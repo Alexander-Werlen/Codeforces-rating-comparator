@@ -104,21 +104,7 @@ export const Graph: React.FC<Props> = ({ratingsHistory}) => {
           <ZAxis range={[30,30]}/>
           <Tooltip 
             cursor={{ strokeDasharray: '3 3' }} 
-            formatter={(value: number, name: string) => {
-              if(name=="date"){
-                const date = new Date(value*1000)
-                return date.toLocaleDateString("en-US", {
-                  year: "numeric",
-                  month: "short",
-                  day: "numeric"
-                })
-              }
-              else return value
-            }}
-            labelFormatter={() => ""}
-            content={({active, payload, label}) => {
-              console.log("payload:")
-              console.log(label)
+            content={({active, payload}) => {
               if(active && payload){
                 const user = payload[0].payload.handle
                 const rating = payload[0].payload.rating
