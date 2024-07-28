@@ -2,6 +2,7 @@ import { useState, useRef } from "react"
 import {Graph} from "./components/Graph.tsx"
 import { FormSection } from "./components/FormSection.tsx"
 import { TableSection } from "./components/TableSection.tsx"
+import { Footer } from "./components/Footer.tsx"
 import unix2date from "./services/auxiliar/unix2date.ts"
 import { Toaster } from "@/components/ui/toaster"
 import { useToast } from "@/components/ui/use-toast"
@@ -122,17 +123,20 @@ function App() {
 
   return (
     <>
-    <div className="container">
-      <h1 className="text-center text-2xl sm:text-4xl font-bold mt-6 font-serif">
-        CODE<span className="text-blue-800">FORCES</span>
-        <br/>
-        Rating Comparator
-      </h1>
-      <FormSection handleSubmit={handleSubmit} newHandle={newHandle} loadingNewUser={loadingNewUser}/>
-      {<Graph ratingsHistory={ratingsHistory}/>}
-      <TableSection tableData={usersData} deleteUser={deleteUser}/>
+    <div className="flex flex-col h-screen justify-between">
+      <div className="container mb-auto">
+        <h1 className="text-center text-2xl sm:text-4xl font-bold mt-6 font-serif">
+          CODE<span className="text-blue-800">FORCES</span>
+          <br/>
+          Rating Comparator
+        </h1>
+        <FormSection handleSubmit={handleSubmit} newHandle={newHandle} loadingNewUser={loadingNewUser}/>
+        {<Graph ratingsHistory={ratingsHistory}/>}
+        <TableSection tableData={usersData} deleteUser={deleteUser}/>
+      </div>
+      <Footer />
+      <Toaster />
     </div>
-    <Toaster />
     </>
   )
 }
