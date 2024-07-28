@@ -13,6 +13,7 @@
     "paths": {
       "@/*": ["./src/*"]
     }
-  }
+  },
+  "source-map": true
 }
 
