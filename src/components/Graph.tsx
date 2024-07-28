@@ -54,6 +54,12 @@ export const Graph: React.FC<Props> = ({ratingsHistory}) => {
   const verticalTickValues: number[] = fullVerticalValues.filter((v) => v<maxVerticalValue)
   const horizontalFillValues: string[] = fullFillValues.slice(-verticalTickValues.length-1)
 
+  const userColorsOptions = ["yellow", "black", "#FF9100", "#28AB14", "#003CFF", "#C400FF", "#14ABA1", "#FF00B3"]
+  const userColor: Record<string, string> = {}
+  for(let idx = 0; idx<ratingsHistory.length; idx++){
+    userColor[ratingsHistory[idx].handle] = userColorsOptions[idx%userColorsOptions.length]
+  }
+
   return (
     <>
     <Card className="mt-4">
@@ -113,7 +119,7 @@ export const Graph: React.FC<Props> = ({ratingsHistory}) => {
           {
             ratingsHistory.map((history) => 
               <Scatter key={history.handle} id={history.handle} name={history.handle} data={history.rating_history} 
-              fill="yellow" line={{stroke: 'yellow', strokeWidth: 2}} shape="circle"/>
+              fill={userColor[history.handle]} line={{stroke: userColor[history.handle], strokeWidth: 2}} shape="circle" isAnimationActive={false}/>
             )
           }
         </ScatterChart>
