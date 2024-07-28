@@ -17,7 +17,8 @@ type Contest = {
 }
 type DayData = {
   dateUNIX: number,
-  rating: number
+  rating: number,
+  handle: string
 }
 type UsersRatingHistory = {handle: string, rating_history: DayData[]}[]
 type UserData = {
@@ -53,7 +54,7 @@ function App() {
   
       const json = await response.json()
       const newUserContests: Contest[] =  json.result
-      const newUserRatingHistory: DayData[] = newUserContests.map((contest) => {return {dateUNIX: contest.ratingUpdateTimeSeconds, rating: contest.newRating}})
+      const newUserRatingHistory: DayData[] = newUserContests.map((contest) => {return {dateUNIX: contest.ratingUpdateTimeSeconds, rating: contest.newRating, handle:contest.handle}})
       
       setRatingsHistory((ratingsHistory) => [...ratingsHistory, {handle: newHandle, rating_history: newUserRatingHistory}])
       

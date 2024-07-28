@@ -17,13 +17,15 @@ import {
 
 type DayData = {
   dateUNIX: number,
-  rating: number
+  rating: number,
+  handle: string
 }
 type UsersRatingHistory = {handle: string, rating_history: DayData[]}[]
 
 interface Props {
   ratingsHistory: UsersRatingHistory
 }
+
 
 export const Graph: React.FC<Props> = ({ratingsHistory}) => {
   let minRating = 4000
@@ -114,6 +116,31 @@ export const Graph: React.FC<Props> = ({ratingsHistory}) => {
               else return value
             }}
             labelFormatter={() => ""}
+            content={({active, payload, label}) => {
+              console.log("payload:")
+              console.log(label)
+              if(active && payload){
+                const user = payload[0].payload.handle
+                const rating = payload[0].payload.rating
+                const dateUNIX = payload[0].payload.dateUNIX
+                const date = new Date(dateUNIX*1000)
+                return (
+                  <div>
+                    <Card className="p-2">
+                      <p><b>{user}: {rating}</b></p>
+                      <p>{date.toLocaleDateString("en-US", {
+                        year: "numeric",
+                        month: "short",
+                        day: "numeric"
+                      })}
+                      </p>
+                    </Card>
+                  </div>
+                )
+              }
+              return null
+            }}
+            
           />
           <Legend formatter={(value) => <span className="text-black italic">{value}</span>}/>
           {
