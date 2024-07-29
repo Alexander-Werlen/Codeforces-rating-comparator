@@ -29,7 +29,7 @@ export const Footer= () => {
                 <a href="https://github.com/Alexander-Werlen/Codeforces-rating-comparator" target="_blank" rel="noopener noreferrer">
                 <Button variant="ghost" className="w-24">{star} <p className="ml-1">Star</p></Button>
                 </a>
-                <a href="https://codeforces.com" target="_blank" rel="noopener noreferrer">
+                <a href="https://codeforces.com/blog/entry/132054" target="_blank" rel="noopener noreferrer">
                 <Button variant="ghost" className="w-24">{feedback} <p className="ml-1">CF Post</p></Button>
                 </a>
             </footer>
